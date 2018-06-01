@@ -1,0 +1,138 @@
+package assignment2;
+
+/**
+ * A blueprint for a Ticket Machine
+ *
+ * @author 000033686
+ */
+public class Ticket_Machine {
+
+    //initialize all variables
+    private double child_fare;
+    private double adult_fare;
+    private int adult_tickets;
+    private int child_tickets;
+    private int route_choice;
+    private double balance;
+    private String route1_name;
+    private String route2_name;
+    private double quarter;
+    private double loonie;
+    private double toonie;
+
+    //Constructor
+    public Ticket_Machine(double child_fare, double adult_fare, String route1_name, String route2_name) {
+        this.child_fare = child_fare;
+        this.adult_fare = adult_fare;
+        this.route1_name = route1_name;
+        this.route2_name = route2_name;
+    }
+
+    // returns child fare value
+    public double getChild_fare() {
+        return child_fare;
+    }
+
+    // returns adult fare value
+    public double getAdult_fare() {
+        return adult_fare;
+    }
+
+    // return number of adult tickets
+    public int getAdult_tickets() {
+        return adult_tickets;
+    }
+
+    // return number of adult tickets
+    public int getChild_tickets() {
+        return child_tickets;
+    }
+
+    // return balance of coins
+    public double getBalance() {
+        return balance;
+    }
+
+    // return route choice
+    public int getRoute_choice() {
+        return route_choice;
+    }
+
+    // return route 1 name
+    public String getRoute1_name() {
+        return route1_name;
+    }
+
+    // return route 2 name
+    public String getRoute2_name() {
+        return route2_name;
+    }
+    
+    public double getQuarter() {
+        return quarter;
+    }
+
+    // stores value of child fare
+    public void setChild_fare(double child_fare) {
+        this.child_fare = child_fare;
+    }
+
+    // stores value of adult fare
+    public void setAdult_fare(double adult_fare) {
+        this.adult_fare = adult_fare;
+    }
+
+    // stores amount of adult tickets
+    public void setAdult_tickets(int adult_tickets) {
+        this.adult_tickets++;
+    }
+
+    public void setSubtractAdult_tickets(int adult_tickets) {
+        if (this.adult_tickets >= 1) {
+            this.adult_tickets--;
+        } else {
+            System.out.println("--------------------------------------------------------");
+            System.out.println("You do not have enough Adult tickets to do that.");
+            System.out.println("--------------------------------------------------------");
+        }
+    }
+
+    // stores amount of child tickets
+    public void setChild_tickets(int child_tickets) {
+        this.child_tickets++;
+    }
+    
+    public void setSubtractChild_tickets (int child_tickets) {
+        if (this.child_tickets >= 1) {
+            this.child_tickets--;
+        } else {
+            System.out.println("--------------------------------------------------------");
+            System.out.println("You do not have enough Child tickets to do that");
+            System.out.println("--------------------------------------------------------");
+        }
+    }
+
+    // stores amount of the balance
+    public void setBalance(double balance) {
+        this.balance = this.quarter++;
+    }
+
+    // stores the route choice
+    public void setRoute_choice(int route_choice) {
+        this.route_choice = route_choice;
+    }
+
+    // stores name of route 1
+    public void setRoute1_name(String route1_name) {
+        this.route1_name = route1_name;
+    }
+
+    // stores name of route 2
+    public void setRoute2_name(String route2_name) {
+        this.route2_name = route2_name;
+    }
+    
+    public void setQuarter(double quarter) {
+        this.quarter = quarter;
+    }
+}
