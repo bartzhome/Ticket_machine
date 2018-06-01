@@ -1,0 +1,94 @@
+package assignment2;
+
+import java.util.Scanner;
+
+/**
+ * A program used for user interaction with Ticket Machine class.
+ *
+ * @author 000033686
+ */
+public class Assignment2 {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+
+        Ticket_Machine t1 = new Ticket_Machine(3.25, 5.50, "Warsaw", "Prague");
+
+        Ticket_Machine t2 = new Ticket_Machine(6.50, 10.00, "Berlin", "France");
+
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Welcome to Ticket Counter!");
+        System.out.println("1 - Approach first machine");
+        System.out.println("2 - Approach second machine");
+        System.out.println("3 - Exit the machine");
+        System.out.print("Your choice: ");
+        int user_choice = Integer.parseInt(input.nextLine());
+
+        switch (user_choice) {
+
+            case 1:
+
+                int selection = 1;
+                String route_name = t1.getRoute1_name();
+                while (selection != 12) {
+
+                    System.out.println("1. Select route to Warsaw");
+                    System.out.println("2. Select route to Prague");
+                    System.out.println("3. Add Adult ticket");
+                    System.out.println("4. Remove Adult ticket");
+                    System.out.println("5. Add Child ticket");
+                    System.out.println("6. Remove Child ticket");
+                    System.out.println("7. Insert Quarter");
+
+                    System.out.println("--------------------------------------------------------");
+                    System.out.println("Selected route: " + route_name + " Child: $" + t1.getChild_fare() + " Adult: $" + t1.getAdult_fare());
+                    System.out.println("Child tickets: " + t1.getChild_tickets() + " Adult tickets: " + t1.getAdult_tickets());
+                    System.out.println("Credit: " + t1.getBalance());
+                    System.out.print("Your choice: ");
+
+                    selection = input.nextInt();
+
+                    if (selection == 1) {
+                        route_name = t1.getRoute1_name();
+                    } else if (selection == 2) {
+                        route_name = t1.getRoute2_name();
+                    } else if (selection == 3) {
+                        t1.setAdult_tickets(1);
+                    } else if (selection == 4) {
+                        t1.setSubtractAdult_tickets(1);
+                    } else if (selection == 5) {
+                        t1.setChild_tickets(1);
+                    } else if (selection == 6) {
+                        t1.setSubtractChild_tickets(1);
+                    } else if (selection == 7) {
+                        t1.setQuarter(0.25);
+                    }
+
+                }
+
+//            case 2: 
+//                  System.out.print("Selected Route: ");
+//                if (t1.getRoute_choice() == 0){
+//                    System.out.println("None");
+//                }
+//                else if (t1.getRoute_choice() == 1){
+//                    System.out.println(t1.getRoute1_name());
+//                }
+//                else if (t1.getRoute_choice() == 2){
+//                    System.out.println(t1.getRoute2_name());
+//                }
+//            
+//            case 3:
+//                System.out.println("Thank you for using Ticket Counter");
+//                System.out.println("Goodbye");
+//            case 3:
+//                System.out.println("Thank you for using Ticket Counter");
+//                System.out.println("Goodbye");
+        }
+
+    }
+
+}
