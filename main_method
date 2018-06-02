@@ -1,128 +1,109 @@
 package assignment2;
 
+import java.util.Scanner;
+
 /**
- * A blueprint for a Ticket Machine
+ * A program used for user interaction with Ticket Machine class.
  *
- * @author
+ * @author 
  */
-public class Ticket_Machine {
+public class Assignment2 {
 
-    //initialize all variables
-    private double child_fare; //  child ticket price
-    private double adult_fare; //  adult ticket price
-    private int adult_tickets; //  number of adult tickets
-    private int child_tickets;  // number of child tickets
-    private String route_choice; // name of route chosen
-    private double balance; // stores quarters, loonies and toonies
-    private final String route1_name; // name of route 1
-    private final String route2_name; // name of route 2
-    private boolean print_ticket; // print ticket
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // child fare, adult fair, route 1, route 2
+        Ticket_Machine t1 = new Ticket_Machine(1.25, 3.25, "Warsaw", "Prague");
 
-    //Constructor
-    public Ticket_Machine(double child_fare, double adult_fare, String route1_name, String route2_name) {
-        this.child_fare = child_fare;
-        this.adult_fare = adult_fare;
-        this.route1_name = route1_name;
-        this.route2_name = route2_name;
-    }
+        Ticket_Machine t2 = new Ticket_Machine(1.50, 4.75, "Berlin", "France");
 
-    // returns child fare value
-    public double getChild_fare() {
-        return child_fare;
-    }
+        Scanner input = new Scanner(System.in);
+        // options for ticket machine selection
+        int user_choice = 0;
+        while (user_choice > 3)
+        System.out.println("Welcome to Ticket Counter!");
+        System.out.println("1 - Approach first machine");
+        System.out.println("2 - Approach second machine");
+        System.out.println("3 - Exit the machine");
+        System.out.print("Your choice: ");
+        user_choice = Integer.parseInt(input.nextLine());
 
-    // returns adult fare value
-    public double getAdult_fare() {
-        return adult_fare;
-    }
+        switch (user_choice) {
 
-    // return number of adult tickets
-    public int getAdult_tickets() {
-        return adult_tickets;
-    }
+            case 1:
 
-    // return number of adult tickets
-    public int getChild_tickets() {
-        return child_tickets;
-    }
+                int selection = 1;
+                while (selection != 11) {
+                    //options for tickets machine
+                    System.out.println("1. Select route to Warsaw");
+                    System.out.println("2. Select route to Prague");
+                    System.out.println("3. Add Adult ticket");
+                    System.out.println("4. Remove Adult ticket");
+                    System.out.println("5. Add Child ticket");
+                    System.out.println("6. Remove Child ticket");
+                    System.out.println("7. Insert Quarter");
+                    System.out.println("8. Insert Loonie");
+                    System.out.println("9. Insert Toonie");
+                    System.out.println("10. Print Ticket(s)");
+                    System.out.println("11. Step away from machine");
+                    // ticket machine display
+                    System.out.println("--------------------------------------------------------");
+                    System.out.println("Selected route: " + t1.getRoute_choice() + " Child: $" + t1.getChild_fare() + " Adult: $" + t1.getAdult_fare());
+                    System.out.println("Child tickets: " + t1.getChild_tickets() + " Adult tickets: " + t1.getAdult_tickets());
+                    System.out.println("Credit: " + t1.getBalance());
+                    System.out.print("Your choice: ");
 
-    // return balance of coins
-    public double getBalance() {
-        return balance;
-    }
+                    selection = input.nextInt();
 
-    // return route choice
-    public String getRoute_choice() {
-        return route_choice;
-    }
+                    if (selection == 1) {
+                        t1.setRoute_choice(1); // sets route choice 1
+                    } else if (selection == 2) {
+                        t1.setRoute_choice(2); // sets route choice 2
+                    } else if (selection == 3) {
+                        t1.setAdult_tickets(1); //adds adult tickets
+                    } else if (selection == 4) {
+                        t1.setSubtractAdult_tickets(1); // subtracts adult tickets
+                    } else if (selection == 5) {
+                        t1.setChild_tickets(1); // add adult tickets
+                    } else if (selection == 6) {
+                        t1.setSubtractChild_tickets(1); // subtract adult tickets
+                    } else if (selection == 7) {
+                        t1.setBalance(0.25); // add quarter balance
+                    } else if (selection == 8) {
+                        t1.setBalance(1.00); // add loonie balance
+                    } else if (selection == 9) {
+                        t1.setBalance(2.00); // add toonie to balance
+                    } else if (selection == 10) {
+                        if (t1.getPrint_ticket()) {
+                            System.out.println("Please take your ticket");
+                        } else {
+                            System.out.println("You need to put in more money to do that");
+                        }
 
-    // return route 1 name
-    public String getRoute1_name() {
-        return route1_name;
-    }
+                    }
 
-    // return route 2 name
-    public String getRoute2_name() {
-        return route2_name;
-    }
-
-    // return print ticket
-    public boolean getPrint_ticket() {
-        print_ticket = false;
-        while (child_tickets >= 1) {
+//            case 2: 
+//                  System.out.print("Selected Route: ");1
+//                if (t1.getRoute_choice() == 0){
+//                    System.out.println("None");
+//                }
+//                else if (t1.getRoute_choice() == 1){
+//                    System.out.println(t1.getRoute1_name());
+//                }
+//                else if (t1.getRoute_choice() == 2){
+//                    System.out.println(t1.getRoute2_name());
+//                }
+//            
+//            case 3:
+//                System.out.println("Thank you for using Ticket Counter");
+//                System.out.println("Goodbye");
+//            case 3:
+//                System.out.println("Thank you for using Ticket Counter");
+//                System.out.println("Goodbye");
+                }
 
         }
-        while (adult_tickets >= 1) {
 
-        }
-        return print_ticket;
-    }
-
-    // stores value of child fare
-    public void setChild_fare(double child_fare) {
-        this.child_fare = child_fare;
-    }
-
-    // stores value of adult fare
-    public void setAdult_fare(double adult_fare) {
-        this.adult_fare = adult_fare;
-    }
-
-    // stores amount of adult tickets
-    public void setAdult_tickets(int adult_tickets) {
-        this.adult_tickets++;
-    }
-
-    // subtract adult cickets
-    public void setSubtractAdult_tickets(int adult_tickets) {
-        if (this.adult_tickets >= 1) {
-            this.adult_tickets--;
-        }
-    }
-
-    // stores amount of child tickets
-    public void setChild_tickets(int child_tickets) {
-        this.child_tickets++;
-    }
-
-    // subtract child tickets
-    public void setSubtractChild_tickets(int child_tickets) {
-        if (this.child_tickets >= 1) {
-            this.child_tickets--;
-        }
-    }
-
-    // stores amount of the balance
-    public void setBalance(double balance) {
-        this.balance = balance + this.balance;
-    }
-
-    // stores the route choice
-    public void setRoute_choice(int route_choice) {
-        if (route_choice == 1) {
-            this.route_choice = this.route1_name;
-        } else if (route_choice == 2) {
-            this.route_choice = this.route2_name;
-        }
     }
 }
