@@ -3,22 +3,20 @@ package assignment2;
 /**
  * A blueprint for a Ticket Machine
  *
- * @author 000033686
+ * @author
  */
 public class Ticket_Machine {
 
     //initialize all variables
-    private double child_fare;
-    private double adult_fare;
-    private int adult_tickets;
-    private int child_tickets;
-    private int route_choice;
-    private double balance;
-    private String route1_name;
-    private String route2_name;
-    private double quarter;
-    private double loonie;
-    private double toonie;
+    private double child_fare; //  child ticket price
+    private double adult_fare; //  adult ticket price
+    private int adult_tickets; //  number of adult tickets
+    private int child_tickets;  // number of child tickets
+    private String route_choice; // name of route chosen
+    private double balance; // stores quarters, loonies and toonies
+    private final String route1_name; // name of route 1
+    private final String route2_name; // name of route 2
+    private boolean print_ticket; // print ticket
 
     //Constructor
     public Ticket_Machine(double child_fare, double adult_fare, String route1_name, String route2_name) {
@@ -54,7 +52,7 @@ public class Ticket_Machine {
     }
 
     // return route choice
-    public int getRoute_choice() {
+    public String getRoute_choice() {
         return route_choice;
     }
 
@@ -67,9 +65,17 @@ public class Ticket_Machine {
     public String getRoute2_name() {
         return route2_name;
     }
-    
-    public double getQuarter() {
-        return quarter;
+
+    // return print ticket
+    public boolean getPrint_ticket() {
+        print_ticket = false;
+        while (child_tickets >= 1) {
+
+        }
+        while (adult_tickets >= 1) {
+
+        }
+        return print_ticket;
     }
 
     // stores value of child fare
@@ -87,13 +93,10 @@ public class Ticket_Machine {
         this.adult_tickets++;
     }
 
+    // subtract adult cickets
     public void setSubtractAdult_tickets(int adult_tickets) {
         if (this.adult_tickets >= 1) {
             this.adult_tickets--;
-        } else {
-            System.out.println("--------------------------------------------------------");
-            System.out.println("You do not have enough Adult tickets to do that.");
-            System.out.println("--------------------------------------------------------");
         }
     }
 
@@ -101,38 +104,25 @@ public class Ticket_Machine {
     public void setChild_tickets(int child_tickets) {
         this.child_tickets++;
     }
-    
-    public void setSubtractChild_tickets (int child_tickets) {
+
+    // subtract child tickets
+    public void setSubtractChild_tickets(int child_tickets) {
         if (this.child_tickets >= 1) {
             this.child_tickets--;
-        } else {
-            System.out.println("--------------------------------------------------------");
-            System.out.println("You do not have enough Child tickets to do that");
-            System.out.println("--------------------------------------------------------");
         }
     }
 
     // stores amount of the balance
     public void setBalance(double balance) {
-        this.balance = this.quarter++;
+        this.balance = balance + this.balance;
     }
 
     // stores the route choice
     public void setRoute_choice(int route_choice) {
-        this.route_choice = route_choice;
-    }
-
-    // stores name of route 1
-    public void setRoute1_name(String route1_name) {
-        this.route1_name = route1_name;
-    }
-
-    // stores name of route 2
-    public void setRoute2_name(String route2_name) {
-        this.route2_name = route2_name;
-    }
-    
-    public void setQuarter(double quarter) {
-        this.quarter = quarter;
+        if (route_choice == 1) {
+            this.route_choice = this.route1_name;
+        } else if (route_choice == 2) {
+            this.route_choice = this.route2_name;
+        }
     }
 }
