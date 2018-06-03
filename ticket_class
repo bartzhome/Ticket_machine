@@ -14,9 +14,10 @@ public class Ticket_Machine {
     private int child_tickets;  // number of child tickets
     private String route_choice; // name of route chosen
     private double balance; // stores quarters, loonies and toonies
+    private double total_due; //
     private final String route1_name; // name of route 1
     private final String route2_name; // name of route 2
-    private boolean print_ticket; // print ticket
+    public boolean print_ticket; // print ticket
 
     //Constructor
     public Ticket_Machine(double child_fare, double adult_fare, String route1_name, String route2_name) {
@@ -71,15 +72,6 @@ public class Ticket_Machine {
         return print_ticket;
     }
 
-    // stores value of child fare
-    public void setChild_fare(double child_fare) {
-        this.child_fare = child_fare;
-    }
-
-    // stores value of adult fare
-    public void setAdult_fare(double adult_fare) {
-        this.adult_fare = adult_fare;
-    }
 
     // stores amount of adult tickets
     public void setAdult_tickets(int adult_tickets) {
@@ -112,6 +104,7 @@ public class Ticket_Machine {
 
     // stores throute choice
     public void setRoute_choice(int route_choice) {
+        this.route_choice = this.route1_name;
         if (route_choice == 1) {
             this.route_choice = this.route1_name;
         } else if (route_choice == 2) {
@@ -120,19 +113,13 @@ public class Ticket_Machine {
     }
 
     public void setPrint_ticket() {
-        print_ticket = false;
-        int adult_count = this.adult_tickets;
-        int child_count = this.child_tickets;
-
-        while (adult_count >= 1 || child_count >= 1) {
-            if ((child_count >= 1) && (this.balance > child_fare)) {
-                this.balance = this.balance - child_fare;
-                child_count--;
-            } else if ((adult_count >= 1) && (this.balance > adult_fare)) {
-                this.balance = this.balance - adult_fare;
-                adult_count--;
-            }
-        }
-
+        this.total_due = (this.adult_tickets * this.adult_fare) + (this.child_tickets * this.child_fare);
+        
+        if (this.total_due <= this.balance){
+            this.child_tickets = 0;
+            this.adult_tickets = 0;
+            this.balance = 0.0;
+            this.route_choice = route1_name;   
+        } 
     }
 }
