@@ -68,13 +68,6 @@ public class Ticket_Machine {
 
     // return print ticket
     public boolean getPrint_ticket() {
-        print_ticket = false;
-        while (child_tickets >= 1) {
-
-        }
-        while (adult_tickets >= 1) {
-
-        }
         return print_ticket;
     }
 
@@ -117,12 +110,29 @@ public class Ticket_Machine {
         this.balance = balance + this.balance;
     }
 
-    // stores the route choice
+    // stores throute choice
     public void setRoute_choice(int route_choice) {
         if (route_choice == 1) {
             this.route_choice = this.route1_name;
         } else if (route_choice == 2) {
             this.route_choice = this.route2_name;
         }
+    }
+
+    public void setPrint_ticket() {
+        print_ticket = false;
+        int adult_count = this.adult_tickets;
+        int child_count = this.child_tickets;
+
+        while (adult_count >= 1 || child_count >= 1) {
+            if ((child_count >= 1) && (this.balance > child_fare)) {
+                this.balance = this.balance - child_fare;
+                child_count--;
+            } else if ((adult_count >= 1) && (this.balance > adult_fare)) {
+                this.balance = this.balance - adult_fare;
+                adult_count--;
+            }
+        }
+
     }
 }
