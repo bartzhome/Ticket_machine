@@ -21,7 +21,6 @@ public class Assignment2 {
         Scanner input = new Scanner(System.in);
         // options for ticket machine selection
         int user_choice = 0;
-        while (user_choice > 3)
         System.out.println("Welcome to Ticket Counter!");
         System.out.println("1 - Approach first machine");
         System.out.println("2 - Approach second machine");
@@ -76,7 +75,7 @@ public class Assignment2 {
                         t1.setBalance(2.00); // add toonie to balance
                     } else if (selection == 10) {
                         if (t1.getPrint_ticket()) {
-                            System.out.println("Please take your ticket");
+                            System.out.println("Please take your ticket(s)");
                         } else {
                             System.out.println("You need to put in more money to do that");
                         }
