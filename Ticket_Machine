@@ -1,110 +1,205 @@
 package assignment2;
 
 /**
- * A blueprint for a Ticket Machine
+ * This class stores and returns values for a Ticket Machine. The class adds and
+ * subtracts tickets for adults and children, the price of the tickets, the
+ * route choice and names, a balance of coins and a print ticket function.
  *
- * @author
+ * @author 000033686
  */
 public class Ticket_Machine {
 
-    //initialize all variables
-    private double child_fare; //  child ticket price
-    private double adult_fare; //  adult ticket price
-    private int adult_tickets; //  number of adult tickets
-    private int child_tickets;  // number of child tickets
-    private String route_choice; // name of route chosen
-    private double balance; // stores quarters, loonies and toonies
-    private double total_due; //
-    private final String route1_name; // name of route 1
+    /**
+     * Price of child ticket *
+     */
+    private final double child_fare;
+    /**
+     * Price of adult ticket *
+     */
+    private final double adult_fare;
+    /**
+     * Quantity of adult tickets *
+     */
+    private int adult_quantity;
+    /**
+     * Quantity of child tickets *
+     */
+    private int child_quantity;
+    /**
+     * Name of chosen route *
+     */
+    private String route_choice;
+    /**
+     * Balance of quarters, loonies and toonies 
+     */
+    private double balance;
+    /**
+     * Name of route 1 *
+     */
+    private final String route1_name;
+    /**
+     * Name of route 2 *
+     */
     private final String route2_name; // name of route 2
-    public boolean print_ticket; // print ticket
 
-    //Constructor
+    /**
+     * Constructor initialized a new instance of
+     *
+     * @param child_fare
+     * @param adult_fare
+     * @param route1_name
+     * @param route2_name route_choice sets route1_name to default.
+     */
     public Ticket_Machine(double child_fare, double adult_fare, String route1_name, String route2_name) {
         this.child_fare = child_fare;
         this.adult_fare = adult_fare;
         this.route1_name = route1_name;
         this.route2_name = route2_name;
+        this.route_choice = route1_name;
     }
 
-    // returns child fare value
+    /**
+     *
+     * @return the fare of a child ticket
+     *
+     */
     public double getChild_fare() {
         return child_fare;
     }
 
-    // returns adult fare value
+    /**
+     *
+     * @return he fare of adult ticket
+     *
+     */
     public double getAdult_fare() {
         return adult_fare;
     }
 
-    // return number of adult tickets
+    /**
+     *
+     * @return number of adult tickets
+     *
+     */
     public int getAdult_tickets() {
-        return adult_tickets;
+        return adult_quantity;
     }
 
-    // return number of adult tickets
+    /**
+     *
+     * @return number of child tickets
+     *
+     */
     public int getChild_tickets() {
-        return child_tickets;
+        return child_quantity;
     }
 
-    // return balance of coins
+    /**
+     *
+     * return balance of coins
+     *
+     */
     public double getBalance() {
         return balance;
     }
 
-    // return route choice
+    /**
+     *
+     * @return user route choice
+     *
+     */
     public String getRoute_choice() {
         return route_choice;
     }
 
-    // return route 1 name
+    /**
+     *
+     * @return route 1 name
+     *
+     */
     public String getRoute1_name() {
         return route1_name;
     }
+    
+        /**
+     * Check check balance against total due to determine if there is enough in  coins balance to print tickets.
+     * @return true or false to print ticket
+     */
+    public boolean getPrint_ticket() {
+        double total_due = (this.adult_quantity * this.adult_fare) + (this.child_quantity * this.child_fare);
 
-    // return route 2 name
+        if ((this.balance - total_due < 0)) {
+            return false;
+        } else {
+            this.child_quantity = 0;
+            this.adult_quantity = 0;
+            this.balance = 0.0;
+            this.route_choice = route1_name;
+            return true;
+        }
+    }
+
+    /**
+     *
+     * @return route 2 name
+     *
+     */
     public String getRoute2_name() {
         return route2_name;
     }
 
-    // return print ticket
-    public boolean getPrint_ticket() {
-        return print_ticket;
+    /**
+     * Adds amount of adult tickets;
+     *
+     */
+    public void setAdult_tickets() {
+        this.adult_quantity++;
     }
 
-
-    // stores amount of adult tickets
-    public void setAdult_tickets(int adult_tickets) {
-        this.adult_tickets++;
-    }
-
-    // subtract adult cickets
-    public void setSubtractAdult_tickets(int adult_tickets) {
-        if (this.adult_tickets >= 1) {
-            this.adult_tickets--;
+    /**
+     * Subtracts amount of adult tickets
+     *
+     */
+    public void setSubtractAdult_tickets() {
+        if (this.adult_quantity >= 1) {
+            this.adult_quantity--;
         }
     }
 
-    // stores amount of child tickets
-    public void setChild_tickets(int child_tickets) {
-        this.child_tickets++;
+    /**
+     * Adds amount of adult tickets
+     *
+     */
+    public void setChild_tickets() {
+        this.child_quantity++;
     }
 
-    // subtract child tickets
-    public void setSubtractChild_tickets(int child_tickets) {
-        if (this.child_tickets >= 1) {
-            this.child_tickets--;
+    /**
+     *
+     * Subtracts amount of Child tickets
+     */
+    public void setSubtractChild_tickets() {
+        if (this.child_quantity >= 1) {
+            this.child_quantity--;
         }
     }
 
-    // stores amount of the balance
+    /**
+     * Adds values to the balance
+     *
+     * @param balance the balance added
+     */
     public void setBalance(double balance) {
         this.balance = balance + this.balance;
     }
 
-    // stores throute choice
+    /**
+     * Selects route choice
+     *
+     * @param route_choice the route chosen
+     */
     public void setRoute_choice(int route_choice) {
-        this.route_choice = this.route1_name;
+
         if (route_choice == 1) {
             this.route_choice = this.route1_name;
         } else if (route_choice == 2) {
@@ -112,14 +207,5 @@ public class Ticket_Machine {
         }
     }
 
-    public void setPrint_ticket() {
-        this.total_due = (this.adult_tickets * this.adult_fare) + (this.child_tickets * this.child_fare);
-        
-        if (this.total_due <= this.balance){
-            this.child_tickets = 0;
-            this.adult_tickets = 0;
-            this.balance = 0.0;
-            this.route_choice = route1_name;   
-        } 
-    }
+
 }
