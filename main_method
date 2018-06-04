@@ -3,9 +3,10 @@ package assignment2;
 import java.util.Scanner;
 
 /**
- * A program used for user interaction with Ticket Machine class. User can make selections between two ticket machines,
- * increase or decrease tickets, add coins, select route and print tickets. 
- * 
+ * A program used for user interaction with Ticket Machine class. User can make
+ * selections between two ticket machines, increase or decrease tickets, add
+ * coins, select route and print tickets.
+ *
  *
  * @author 000033686
  */
@@ -17,17 +18,15 @@ public class Machine_Options {
     public static void main(String[] args) {
         Ticket_Machine t1 = new Ticket_Machine(1.25, 3.25, "Warsaw", "Prague");   // child fare, adult fair, route 1, route 2
         Ticket_Machine t2 = new Ticket_Machine(1.50, 4.75, "Berlin", "France");   // child fare, adult fair, route 1, route 2
-        
-        
+
         boolean quit = false; //quit set to false to keep loop running
         while (quit == false) {
 
             Scanner input = new Scanner(System.in);
 
-          
-            int user_choice;
-            System.out.println("Welcome to Ticket Counter!");  // options for ticket machine selection
-            System.out.println("1 - Approach first machine"); 
+            int user_choice = 1;
+            System.out.println("Welcome to Ticket Counter!"); // assuming user choice is an integer between 1 and 3
+            System.out.println("1 - Approach first machine"); // options for ticket machine selection
             System.out.println("2 - Approach second machine");
             System.out.println("3 - Exit the machine");
             System.out.print("Your choice: ");
